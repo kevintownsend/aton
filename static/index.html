@@ -9,6 +9,14 @@
     <script>
       <!-- TODO(kevintownsend): Add javascript -->
       <!-- TODO: monitor for key press -->
+      <!-- TODO: add var for key -->
+      document.addEventListener('keydown', (event) => {
+        console.log(`Key pressed down: ${event.key} (Code: ${event.code})`);
+        // Example: Check for a specific key
+        if (event.key === 'Enter') {
+          console.log('Enter key was pressed!');
+        }
+      });
     </script>
   </body>
 </html>
