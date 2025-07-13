@@ -4,22 +4,22 @@ on:
   pull_request:
     branches: [master]
 
-  jobs:
-    style:
-      name: Style
-      runs-on: ubuntu-latest
+jobs:
+  style:
+    name: Style
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Check out code
-          uses: actions/checkout@v4
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
 
-        - name: Set up Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.13'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
 
-        - name: Install Pylint
-          run: pip install pylint
+      - name: Install Pylint
+        run: pip install pylint
 
-        - name: Run Pylint
-          run: pylint $(git ls-files *.py)
+      - name: Run Pylint
+        run: pylint $(git ls-files *.py)
