@@ -1,3 +1,4 @@
+"""Main Python module for aton app."""
 import os
 
 from flask import Flask
@@ -10,7 +11,6 @@ def hello():
     """Return a friendly HTTP greeting."""
     return 'Hello World!'
 
-# TODO: Read static website.
 @app.route('/')
 def index():
     """Return the static index.html page."""
