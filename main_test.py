@@ -13,9 +13,11 @@
 # limitations under the License.
 
 """Tests for aton app."""
+
 import main
 
 def test_index():
+    """Test retreiving index"""
     main.app.testing = True
     client = main.app.test_client()
 
