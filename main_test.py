@@ -12,10 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Tests for aton app."""
+
 import main
 
-
 def test_index():
+    """Test retreiving index"""
     main.app.testing = True
     client = main.app.test_client()
 

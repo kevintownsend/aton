@@ -1,3 +1,4 @@
+"""Main Python module for aton app."""
 import os
 
 from flask import Flask
@@ -10,12 +11,11 @@ def hello():
     """Return a friendly HTTP greeting."""
     return 'Hello World!'
 
-# TODO: Read static website.
 @app.route('/')
 def index():
     """Return the static index.html page."""
-    f = open("static/index.html")
-    return f.read()
+    with open("static/index.html", "r", encoding="utf-8") as f:
+        return f.read()
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
