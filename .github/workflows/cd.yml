@@ -21,3 +21,9 @@ jobs:
 
       - name: gcloud check
         run: gcloud info
+
+      - name: Upload image to cloud
+        run: gcloud builds submit --tag us-west1-docker.pkg.dev/aton-272204/aton-ar-repo/aton:latest .
+
+      - name: Deploy to Cloud Run
+        run: gcloud run deploy notely --image us-west1-docker.pkg.dev/aton-272204/aton-ar-repo/aton:latest --region us-west1 --allow-unauthenticated --project aton-272204 --max-instances=4
