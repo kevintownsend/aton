@@ -17,6 +17,14 @@ db_token = os.environ.get('DB_AUTH_TOKEN')
 
 conn = libsql.connect("libsql", sync_url=DB_URL, auth_token=db_token)
 
+
+# Connect to the torso libsql database.
+conn.execute(
+        "CREATE TABLE IF NOT EXISTS users "
+        "(id INTEGER, user TEXT, score FLOAT);")
+conn.commit()
+conn.sync()
+
 def hello():
     """Return a friendly HTTP greeting."""
     return 'Hello World!'
@@ -38,13 +46,6 @@ def leaderboard():
 
 def main():
     """The main entry point of the app."""
-
-    # Connect to the torso libsql database.
-    conn.execute(
-            "CREATE TABLE IF NOT EXISTS users "
-            "(id INTEGER, user TEXT, score FLOAT);")
-    conn.commit()
-    conn.sync()
 
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 8080)), debug=True)
 
