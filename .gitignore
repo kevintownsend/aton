@@ -3,3 +3,4 @@ libsql
 libsql-info
 libsql-shm
 libsql-wal
+__pycache__
