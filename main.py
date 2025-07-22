@@ -13,8 +13,6 @@ app = Flask(__name__)
 
 load_dotenv()
 
-db_url = os.environ.get('DB_URL')
-
 db_token = os.environ.get('DB_AUTH_TOKEN')
 
 conn = libsql.connect("libsql", sync_url=DB_URL, auth_token=db_token)
