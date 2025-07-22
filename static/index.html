@@ -5,18 +5,30 @@
   </head>
   <body>
     Type the letter a
+  </body>
     <!-- TODO(kevintownsend): Add content -->
     <script>
       <!-- TODO(kevintownsend): Add javascript -->
       <!-- TODO: monitor for key press -->
       <!-- TODO: add var for key -->
+      var current_key = 'a';
+      var start_time
       document.addEventListener('keydown', (event) => {
         console.log(`Key pressed down: ${event.key} (Code: ${event.code})`);
         // Example: Check for a specific key
-        if (event.key === 'Enter') {
-          console.log('Enter key was pressed!');
+        if (event.key === current_key) {
+          console.log('Current key was pressed!');
+          if(current_key === 'a') {
+            start_time = Date.now()
+          }
+          if(current_key === 'n') {
+            current_key = 'a'
+            console.log('total time: ' + (Date.now() - start_time))
+          } else {
+            current_key = String.fromCharCode(current_key.charCodeAt(0) + 1);
+          }
+          document.body.textContent = 'Type the letter ' + current_key;
         }
       });
     </script>
-  </body>
 </html>
