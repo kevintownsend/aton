@@ -1,12 +1,12 @@
 """Main Python module for aton app."""
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
 import libsql
 
-from constants import *
-
 from flask import Flask
+
+from constants import DB_URL
 
 
 app = Flask(__name__)
@@ -31,6 +31,7 @@ def index():
 
 @app.route('/leaderboard')
 def leaderboard():
+    """Create the leaderboard page."""
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM users")
     rows = cursor.fetchall()
