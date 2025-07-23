@@ -9,6 +9,7 @@ from flask import request
 
 from constants import DB_URL
 
+import leaderboard
 
 app = Flask(__name__)
 
@@ -37,13 +38,9 @@ def index():
         return f.read()
 
 @app.route('/leaderboard')
-def leaderboard():
+def leaderboard_page():
     """Create the leaderboard page."""
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users")
-    rows = cursor.fetchall()
-    # TODO: create a proper leaderboard.
-    return rows[0][1]
+    return leaderboard.leaderboard(conn)
 
 @app.route('/submit_score', methods = ['POST'])
 def submit_score():
