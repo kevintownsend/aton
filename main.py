@@ -9,6 +9,7 @@ from flask import request
 
 from constants import DB_URL
 
+import leaderboard
 
 app = Flask(__name__)
 
@@ -26,10 +27,6 @@ conn.execute(
 conn.commit()
 conn.sync()
 
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World!'
-
 @app.route('/')
 def index():
     """Return the static index.html page."""
@@ -37,20 +34,19 @@ def index():
         return f.read()
 
 @app.route('/leaderboard')
-def leaderboard():
+def leaderboard_page():
     """Create the leaderboard page."""
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users")
-    rows = cursor.fetchall()
-    # TODO: create a proper leaderboard.
-    return rows[0][1]
+    return leaderboard.leaderboard(conn)
 
 @app.route('/submit_score', methods = ['POST'])
 def submit_score():
     """Submit the score to the leaderboard."""
     data = request.get_json()
-    # TODO: process data.
-    print(data)
+    conn.execute(
+            "INSERT INTO users(id, user, score) VALUES (0, '" +
+            data["name"] + "', " + str(data["score"]) + ");")
+    conn.commit()
+    conn.sync()
     return ""
 
 def main():

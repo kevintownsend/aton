@@ -25,4 +25,14 @@ def leaderboard(conn):
 def create_table(rows):
     """Returns a formated table from the user data."""
     _ = rows
-    return ""
+    table = "    <table>\n"
+    for row in rows:
+        name = row[1]
+        score = row[2]
+        table += "      <tr>\n"
+        table += "        <th>" + name + "</th>\n"
+        table += "        <th>" + str(score) + "</th>\n"
+        table += "      </tr>\n"
+    table += "    </table>\n"
+
+    return table
