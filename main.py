@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import libsql
 
 from flask import Flask
+from flask import request
 
 from constants import DB_URL
 
@@ -43,6 +44,14 @@ def leaderboard():
     rows = cursor.fetchall()
     # TODO: create a proper leaderboard.
     return rows[0][1]
+
+@app.route('/submit_score', methods = ['POST'])
+def submit_score():
+    """Submit the score to the leaderboard."""
+    data = request.get_json()
+    # TODO: process data.
+    print(data)
+    return ""
 
 def main():
     """The main entry point of the app."""
