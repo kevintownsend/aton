@@ -27,10 +27,6 @@ conn.execute(
 conn.commit()
 conn.sync()
 
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World!'
-
 @app.route('/')
 def index():
     """Return the static index.html page."""
@@ -46,8 +42,11 @@ def leaderboard_page():
 def submit_score():
     """Submit the score to the leaderboard."""
     data = request.get_json()
-    # TODO: process data.
-    print(data)
+    conn.execute(
+            "INSERT INTO users(id, user, score) VALUES (0, '" +
+            data["name"] + "', " + str(data["score"]) + ");")
+    conn.commit()
+    conn.sync()
     return ""
 
 def main():
