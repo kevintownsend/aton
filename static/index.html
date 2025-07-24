@@ -1,60 +1,60 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>A to N Speed Typing Challenge</title>
-  </head>
-  <body>
-    Type the letter a
-  </body>
-    <!-- TODO(kevintownsend): Add content -->
-    <script>
-      async function sumbitScore(name, score) {
-          console.log(JSON.stringify({
-            name: name,
-            score: score
-          }))
-        const response = await fetch('submit_score', {
-          method: 'POST',
+<html lang="en">
 
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: name,
-            score: score
-          })
-        }
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        // TODO: go to leaderboard
-        window.location.href = '/leaderboard';
+<head>
+  <title>A to N Speed Typing Challenge</title>
+</head>
+
+<body>
+  Type the letter a
+
+  <script>
+    async function sumbitScore(name, score) {
+      console.log(JSON.stringify({
+        name: name,
+        score: score
+      }))
+      const response = await fetch('submit_score', {
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          score: score
+        })
       }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      window.location.href = '/leaderboard';
+    }
 
-      var current_key = 'a';
-      var start_time;
-      document.addEventListener('keydown', (event) => {
-        console.log(`Key pressed down: ${event.key} (Code: ${event.code})`);
-        // Example: Check for a specific key
-        if (event.key === current_key) {
-          console.log('Current key was pressed!');
-          if(current_key === 'a') {
-            start_time = Date.now();
-          }
-          if(current_key === 'n') {
-            current_key = 'a';
-            console.log('total time: ' + (Date.now() - start_time))
-            score = (Date.now() - start_time)/1000.0
-            let name = prompt('total time: ' + (Date.now() - start_time)/1000.0 + ' Enter your name to submit score:');
-            if(name != null) {
-              sumbitScore(name, score);
-            }
-          } else {
-            current_key = String.fromCharCode(current_key.charCodeAt(0) + 1);
-          }
-          document.body.textContent = 'Type the letter ' + current_key;
+    var current_key = 'a';
+    var start_time;
+    document.addEventListener('keydown', (event) => {
+
+      if (event.key === current_key) {
+        if (current_key === 'a') {
+          start_time = Date.now();
         }
-      });
-    </script>
+        if (current_key === 'n') {
+          current_key = 'a';
+          score = (Date.now() - start_time) / 1000.0
+          let name = prompt('total time: ' + (Date.now() - start_time) / 1000.0 +
+            ' Enter your name to submit score:');
+          if (name != null) {
+            sumbitScore(name, score);
+          }
+        } else {
+          current_key = String.fromCharCode(current_key.charCodeAt(0) + 1);
+        }
+        document.body.textContent = 'Type the letter ' + current_key;
+      }
+    });
+  </script>
+</body>
+
 </html>
