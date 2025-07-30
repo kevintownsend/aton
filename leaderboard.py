@@ -4,6 +4,7 @@ BEFORE = """<!DOCTYPE html>
 <html>
   <head>
     <title>A to N Speed Typing Challenge</title>
+    <link rel="canonical" href="https://typeaton.com/leaderboard" />
   </head>
   <body>
 """
