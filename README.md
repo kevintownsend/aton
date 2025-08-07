@@ -1,5 +1,5 @@
-# typeaton.com
-A website for speedtyping aton.
+# typeaton
+[typeaton](typeaton.com) is a website for speedtyping a to n, the first half of the alphabet.
 
 # Contributing
 This site started as a way to learn web technologies like Docker and SQL.
